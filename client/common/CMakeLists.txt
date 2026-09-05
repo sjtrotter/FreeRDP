@@ -50,6 +50,17 @@ else()
   set(OPT_FUSE_DEFAULT OFF)
 endif()
 
+if(UNIX AND NOT WIN32 AND NOT ANDROID)
+  option(WITH_TOKEN_HELPER "Build with external Entra ID token helper support" ON)
+else()
+  set(WITH_TOKEN_HELPER OFF CACHE INTERNAL "unsupported platform")
+endif()
+
+if(WITH_TOKEN_HELPER)
+  list(APPEND SRCS token_helper.c token_helper.h)
+  add_compile_definitions(WITH_TOKEN_HELPER)
+endif()
+
 option(WITH_EMBEDDED_CLI_IN_RDP_FILES "[dangrous] allow embedded cli arguments in rdp files" OFF)
 if(WITH_EMBEDDED_CLI_IN_RDP_FILES)
   add_compile_definitions(WITH_EMBEDDED_CLI_IN_RDP_FILES)

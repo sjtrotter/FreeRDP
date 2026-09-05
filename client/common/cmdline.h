@@ -530,6 +530,12 @@ static const COMMAND_LINE_ARGUMENT_A global_cmd_args[] = {
 #endif
 	{ "toggle-fullscreen", COMMAND_LINE_VALUE_BOOL, nullptr, BoolValueTrue, nullptr, -1, nullptr,
 	  "Alt+Ctrl+Enter to toggle fullscreen" },
+#if defined(WITH_TOKEN_HELPER)
+	{ "token-helper", COMMAND_LINE_VALUE_REQUIRED, "[<path>|off]", nullptr, nullptr, -1, nullptr,
+	  "External Entra ID token helper used for AAD and AVD sign-in. Defaults to "
+	  "entra-token-helper on PATH, overridden by the FREERDP_TOKEN_HELPER environment variable. "
+	  "Use off to keep the built in browser flow" },
+#endif
 	{ "tune", COMMAND_LINE_VALUE_REQUIRED, "<setting:value>,<setting:value>", "", nullptr, -1,
 	  nullptr, "[experimental] directly manipulate freerdp settings, use with extreme caution!" },
 #if defined(WITH_FREERDP_DEPRECATED_COMMANDLINE)

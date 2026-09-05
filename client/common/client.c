@@ -84,6 +84,10 @@
 #include "sso_mib_tokens.h"
 #endif
 
+#if defined(WITH_TOKEN_HELPER)
+#include "token_helper.h"
+#endif
+
 #include <freerdp/log.h>
 #define TAG CLIENT_TAG("common")
 
@@ -544,7 +548,11 @@ static void set_default_callbacks(freerdp* instance)
 	instance->VerifyChangedCertificateEx = client_cli_verify_changed_certificate_ex;
 	instance->PresentGatewayMessage = client_cli_present_gateway_message;
 	instance->LogonErrorInfo = client_cli_logon_error_info;
+#if defined(WITH_TOKEN_HELPER)
+	instance->GetAccessToken = client_token_helper_get_access_token;
+#else
 	instance->GetAccessToken = client_cli_get_access_token;
+#endif
 	instance->RetryDialog = client_common_retry_dialog;
 
 	WINPR_ASSERT(instance->context);

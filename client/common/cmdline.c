@@ -5503,6 +5503,13 @@ static int parse_command_line(rdpSettings* settings, const COMMAND_LINE_ARGUMENT
 			if (!freerdp_settings_set_bool(settings, FreeRDP_UnmapButtons, enable))
 				return fail_at(arg, COMMAND_LINE_ERROR);
 		}
+#if defined(WITH_TOKEN_HELPER)
+		CommandLineSwitchCase(arg, "token-helper")
+		{
+			if (!freerdp_settings_set_string(settings, FreeRDP_TokenHelperPath, arg->Value))
+				return fail_at(arg, COMMAND_LINE_ERROR_MEMORY);
+		}
+#endif
 		CommandLineSwitchCase(arg, "toggle-fullscreen")
 		{
 			if (!freerdp_settings_set_bool(settings, FreeRDP_ToggleFullscreen, enable))
