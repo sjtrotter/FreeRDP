@@ -469,6 +469,7 @@ static const size_t string_list_indices[] = {
 	FreeRDP_TargetNetAddress,
 	FreeRDP_TerminalDescriptor,
 	FreeRDP_TlsSecretsFile,
+	FreeRDP_TokenHelperPath,
 	FreeRDP_TransportDumpFile,
 	FreeRDP_UserSpecifiedServerName,
 	FreeRDP_Username,

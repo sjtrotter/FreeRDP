@@ -3067,6 +3067,9 @@ const char* freerdp_settings_get_string(WINPR_ATTR_UNUSED const rdpSettings* set
 		case FreeRDP_TlsSecretsFile:
 			return settings->TlsSecretsFile;
 
+		case FreeRDP_TokenHelperPath:
+			return settings->TokenHelperPath;
+
 		case FreeRDP_TransportDumpFile:
 			return settings->TransportDumpFile;
 
@@ -3407,6 +3410,9 @@ char* freerdp_settings_get_string_writable(rdpSettings* settings, FreeRDP_Settin
 
 		case FreeRDP_TlsSecretsFile:
 			return settings->TlsSecretsFile;
+
+		case FreeRDP_TokenHelperPath:
+			return settings->TokenHelperPath;
 
 		case FreeRDP_TransportDumpFile:
 			return settings->TransportDumpFile;
@@ -3760,6 +3766,9 @@ BOOL freerdp_settings_set_string_(WINPR_ATTR_UNUSED rdpSettings* settings,
 
 		case FreeRDP_TlsSecretsFile:
 			return update_string_(&settings->TlsSecretsFile, cnv.c, len);
+
+		case FreeRDP_TokenHelperPath:
+			return update_string_(&settings->TokenHelperPath, cnv.c, len);
 
 		case FreeRDP_TransportDumpFile:
 			return update_string_(&settings->TransportDumpFile, cnv.c, len);
@@ -4134,6 +4143,9 @@ BOOL freerdp_settings_set_string_copy_(WINPR_ATTR_UNUSED rdpSettings* settings,
 
 		case FreeRDP_TlsSecretsFile:
 			return update_string_copy_(&settings->TlsSecretsFile, cnv.cc, len, cleanup);
+
+		case FreeRDP_TokenHelperPath:
+			return update_string_copy_(&settings->TokenHelperPath, cnv.cc, len, cleanup);
 
 		case FreeRDP_TransportDumpFile:
 			return update_string_copy_(&settings->TransportDumpFile, cnv.cc, len, cleanup);

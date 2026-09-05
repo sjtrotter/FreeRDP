@@ -600,6 +600,7 @@ static const struct settings_str_entry settings_map[] = {
 	{ FreeRDP_TargetNetAddress, FREERDP_SETTINGS_TYPE_STRING, "FreeRDP_TargetNetAddress" },
 	{ FreeRDP_TerminalDescriptor, FREERDP_SETTINGS_TYPE_STRING, "FreeRDP_TerminalDescriptor" },
 	{ FreeRDP_TlsSecretsFile, FREERDP_SETTINGS_TYPE_STRING, "FreeRDP_TlsSecretsFile" },
+	{ FreeRDP_TokenHelperPath, FREERDP_SETTINGS_TYPE_STRING, "FreeRDP_TokenHelperPath" },
 	{ FreeRDP_TransportDumpFile, FREERDP_SETTINGS_TYPE_STRING, "FreeRDP_TransportDumpFile" },
 	{ FreeRDP_UserSpecifiedServerName, FREERDP_SETTINGS_TYPE_STRING,
 	  "FreeRDP_UserSpecifiedServerName" },

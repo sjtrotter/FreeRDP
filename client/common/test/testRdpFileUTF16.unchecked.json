@@ -381,6 +381,7 @@
 		"FreeRDP_NtlmSamFile": null,
 		"FreeRDP_SspiModule": null,
 		"FreeRDP_TlsSecretsFile": null,
+		"FreeRDP_TokenHelperPath": null,
 		"FreeRDP_AuthenticationPackageList": null,
 		"FreeRDP_WinSCardModule": null,
 		"FreeRDP_PreconnectionBlob": null,
