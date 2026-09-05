@@ -36,6 +36,10 @@
 #include <aad/sdl_webview.hpp>
 #endif
 
+#if defined(WITH_TOKEN_HELPER)
+#include <token_helper.h>
+#endif
+
 static constexpr auto sdl_allow_screensaver = "sdl-allow-screensaver";
 
 SdlContext::SdlContext(rdpContext* context)
@@ -61,7 +65,14 @@ SdlContext::SdlContext(rdpContext* context)
 	instance->ChooseSmartcard = sdl_choose_smartcard;
 	instance->RetryDialog = sdl_retry_dialog;
 
+#if defined(WITH_TOKEN_HELPER)
 #ifdef WITH_WEBVIEW
+	client_token_helper_set_fallback(sdl_webview_get_access_token);
+#else
+	client_token_helper_set_fallback(client_cli_get_access_token);
+#endif
+	instance->GetAccessToken = client_token_helper_get_access_token;
+#elif defined(WITH_WEBVIEW)
 	instance->GetAccessToken = sdl_webview_get_access_token;
 #else
 	instance->GetAccessToken = client_cli_get_access_token;

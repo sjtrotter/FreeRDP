@@ -588,6 +588,13 @@ BOOL client_token_helper_should_fall_back(TokenHelperStatus status)
 	       (status != TOKEN_HELPER_SERVER_ERROR);
 }
 
+static pGetAccessToken token_helper_fallback = client_cli_get_access_token;
+
+void client_token_helper_set_fallback(pGetAccessToken fallback)
+{
+	token_helper_fallback = fallback ? fallback : client_cli_get_access_token;
+}
+
 BOOL client_token_helper_get_access_token(freerdp* instance, AccessTokenType tokenType,
                                           char** token, size_t count, ...)
 {
@@ -663,5 +670,5 @@ BOOL client_token_helper_get_access_token(freerdp* instance, AccessTokenType tok
 		WLog_WARN(TAG, "token helper declined (%s), falling back to the browser flow",
 		          client_token_helper_status_string(status));
 
-	return client_cli_get_access_token(instance, tokenType, token, count, scope, req_cnf);
+	return token_helper_fallback(instance, tokenType, token, count, scope, req_cnf);
 }

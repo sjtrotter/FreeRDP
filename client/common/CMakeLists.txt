@@ -58,7 +58,6 @@ endif()
 
 if(WITH_TOKEN_HELPER)
   list(APPEND SRCS token_helper.c token_helper.h)
-  add_compile_definitions(WITH_TOKEN_HELPER)
 endif()
 
 option(WITH_EMBEDDED_CLI_IN_RDP_FILES "[dangrous] allow embedded cli arguments in rdp files" OFF)
@@ -103,6 +102,11 @@ include(CheckLibraryExists)
 check_library_exists(m lround "" HAVE_LIB_M)
 if(HAVE_LIB_M)
   list(APPEND PUB_LIBS m)
+endif()
+
+if(WITH_TOKEN_HELPER)
+  target_compile_definitions(${MODULE_NAME} PUBLIC WITH_TOKEN_HELPER)
+  target_include_directories(${MODULE_NAME} INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>)
 endif()
 
 target_include_directories(${MODULE_NAME} INTERFACE $<INSTALL_INTERFACE:include/freerdp${FREERDP_VERSION_MAJOR}>)

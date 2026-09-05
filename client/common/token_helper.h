@@ -104,12 +104,24 @@ extern "C"
 
 	/** A @c GetAccessToken implementation backed by the external helper.
 	 *
-	 *  Falls through to @ref client_cli_get_access_token when the helper declines, and stops
+	 *  Falls through to the callback set with @ref client_token_helper_set_fallback (or
+	 *  @ref client_cli_get_access_token, its default) when the helper declines, and stops
 	 *  when the user or the authorization server said no.
 	 */
 	FREERDP_API BOOL client_token_helper_get_access_token(freerdp* instance,
 	                                                      AccessTokenType tokenType, char** token,
 	                                                      size_t count, ...);
+
+	/** Set the @c GetAccessToken callback used when the helper declines or is not configured.
+	 *
+	 *  A front-end that wants its own interactive flow (a web view, the terminal paste
+	 *  prompt, ...) as the fallback calls this once, before installing
+	 *  @ref client_token_helper_get_access_token as @c instance->GetAccessToken. Defaults to
+	 *  @ref client_cli_get_access_token.
+	 *
+	 *  @param fallback The callback to defer to, or @c nullptr to restore the default.
+	 */
+	FREERDP_API void client_token_helper_set_fallback(pGetAccessToken fallback);
 
 #ifdef __cplusplus
 }
